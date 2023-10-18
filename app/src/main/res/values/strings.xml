@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">trabalho-tsi2</string>
+    <string name="buy_ticket">Comprar ficha</string>
+    <string name="dessert">Sobremesa</string>
+    <string name="dish_image_description">Imagem do prato</string>
+    <string name="base_dish">Prato base</string>
+    <string name="garnish">Guarnição</string>
+    <string name="salad">Salada</string>
+    <string name="ticket_bought">Ficha comprada</string>
 </resources>
