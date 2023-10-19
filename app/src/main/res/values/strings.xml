@@ -7,4 +7,8 @@
     <string name="garnish">Guarnição</string>
     <string name="salad">Salada</string>
     <string name="ticket_bought">Ficha comprada</string>
+    <string name="about">Sobre</string>
+    <string name="app_description">Aplicativo de vendas de restaurante universitário. Desenvolvido como trabalho de Tópicos em Sistemas de Informação II.</string>
+    <string name="developers">Desenvolvedores</string>
+    <string name="developers_list">Pedro Braghin da Silva\nRodinei Martins Coelho</string>
 </resources>
