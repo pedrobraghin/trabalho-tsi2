@@ -11,4 +11,6 @@
     <string name="app_description">Aplicativo de vendas de restaurante universitário. Desenvolvido como trabalho de Tópicos em Sistemas de Informação II.</string>
     <string name="developers">Desenvolvedores</string>
     <string name="developers_list">Pedro Braghin da Silva\nRodinei Martins Coelho</string>
+    <string name="purchases">Compras</string>
+    <string name="dish_imagem">Imagem do prato</string>
 </resources>
