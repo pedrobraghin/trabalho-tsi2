@@ -11,4 +11,11 @@
     <string name="app_description">Aplicativo de vendas de restaurante universitário. Desenvolvido como trabalho de Tópicos em Sistemas de Informação II.</string>
     <string name="developers">Desenvolvedores</string>
     <string name="developers_list">Pedro Braghin da Silva\nRodinei Martins Coelho</string>
+    <string name="fishIconDescription">Ícone de peixe</string>
+    <string name="main_dish_label">Prato principal</string>
+    <string name="vegetarian_dish_label">Vegetariano</string>
+    <string name="header_title">Cardápio de hoje</string>
+    <string name="restaurant_status">Aberto agora</string>
+    <string name="main_dish_button_description">Imagem com um fundo azul claro, com um ícone de peixe centralizado horziontalmente à esquerda, e um texto ao centro dizendo "Prato Principal"</string>
+    <string name="vegetarian_dish_button_description">Imagem com um fundo azul escuro, com um ícone de cenour centralizado horziontalmente à esquerda, e um texto ao centro dizendo "Vegetariano"</string>
 </resources>
