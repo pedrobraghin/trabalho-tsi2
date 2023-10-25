@@ -20,4 +20,6 @@
     <string name="restaurant_status">Aberto agora</string>
     <string name="main_dish_button_description">Imagem com um fundo azul claro, com um ícone de peixe centralizado horziontalmente à esquerda, e um texto ao centro dizendo "Prato Principal"</string>
     <string name="vegetarian_dish_button_description">Imagem com um fundo azul escuro, com um ícone de cenour centralizado horziontalmente à esquerda, e um texto ao centro dizendo "Vegetariano"</string>
+    <string name="home_icon_title">Início</string>
+    <string name="history_icon_title">Histórico</string>
 </resources>

@@ -6,6 +6,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageButton;
 
 import com.example.trabalho_tsi2.R;
@@ -13,6 +16,8 @@ import com.example.trabalho_tsi2.database.Database;
 import com.example.trabalho_tsi2.dishes.Dish;
 import com.example.trabalho_tsi2.dishes.DishActivity;
 import com.example.trabalho_tsi2.dishes.DishCardFragment;
+import com.example.trabalho_tsi2.purchases.PurchaseHistoryActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
     ImageButton mainDishImageButton;
@@ -21,18 +26,22 @@ public class HomeActivity extends AppCompatActivity {
     FragmentManager fragmentManager = getSupportFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     Database database = Database.getInstance();
+
+    private BottomNavigationView navigationBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         this.mainDishImageButton = findViewById(R.id.mainDishButton);
-        this.vegetarianDishImageButton= findViewById(R.id.vegetarianDishButton);
+        this.vegetarianDishImageButton = findViewById(R.id.vegetarianDishButton);
 
-        this.loadMainDishes();
-        this.loadVegetarianDishes();
-
+        loadMainDishes();
+        loadVegetarianDishes();
         fragmentTransaction.commit();
+
+        navigationBar = findViewById(R.id.navigationBar);
 
         this.mainDishImageButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, DishActivity.class);
@@ -47,6 +56,33 @@ public class HomeActivity extends AppCompatActivity {
             intent.putExtra("dish", mainDish);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.bottom_navigation_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.homeMenuItem) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        
+        if (itemId == R.id.historyMenuItem) {
+            Intent intent = new Intent(this, PurchaseHistoryActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadMainDishes() {
