@@ -27,8 +27,6 @@ public class HomeActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     Database database = Database.getInstance();
 
-    private BottomNavigationView navigationBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +38,6 @@ public class HomeActivity extends AppCompatActivity {
         loadMainDishes();
         loadVegetarianDishes();
         fragmentTransaction.commit();
-
-        navigationBar = findViewById(R.id.navigationBar);
 
         this.mainDishImageButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, DishActivity.class);
@@ -75,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-        
+
         if (itemId == R.id.historyMenuItem) {
             Intent intent = new Intent(this, PurchaseHistoryActivity.class);
             startActivity(intent);
