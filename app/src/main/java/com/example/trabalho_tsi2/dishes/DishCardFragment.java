@@ -1,10 +1,12 @@
 package com.example.trabalho_tsi2.dishes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,26 +15,27 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.trabalho_tsi2.R;
+import com.example.trabalho_tsi2.database.Database;
+import com.example.trabalho_tsi2.home.HomeActivity;
 
 public class DishCardFragment extends Fragment {
     private TextView cardTitleTextView;
     private TextView cardDescriptionTextView;
 
     private ImageView cardImageView;
-    private String imagePath;
+    private LinearLayout container;
 
-    private String cardTitle;
-    private String cardDescription;
+
+    private Dish dish;
     public DishCardFragment() {
 
     }
 
-    public static DishCardFragment newInstance(String cardTitle, String cardDescription, String imagePath) {
+    public static DishCardFragment newInstance(String cardTitle, Dish dish) {
         DishCardFragment fragment = new DishCardFragment();
         Bundle args = new Bundle();
         args.putString("card_title", cardTitle);
-        args.putString("card_description", cardDescription);
-        args.putString("image_path", imagePath);
+        args.putSerializable("dish", dish);
 
         fragment.setArguments(args);
 
@@ -49,8 +52,9 @@ public class DishCardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dish_card, container, false);
 
         String cardTitle = getArguments().getString("card_title");
-        String cardDescription = getArguments().getString("card_description");
-        String imagePath =getArguments().getString("image_path");
+        Dish dish = (Dish) getArguments().getSerializable("dish");
+        String cardDescription = dish.getTitle();
+        String imagePath = dish.getImagePath();
 
         this.cardDescriptionTextView = view.findViewById(R.id.cardDescriptionTextView);
         this.cardDescriptionTextView.setText(cardDescription);
@@ -60,9 +64,17 @@ public class DishCardFragment extends Fragment {
 
         this.cardImageView = view.findViewById(R.id.cardImageView);
 
+        this.container = view.findViewById(R.id.cardContainer);
+
+        this.container.setOnClickListener(containerView -> {
+            Intent intent = new Intent(getActivity(), DishActivity.class);
+            intent.putExtra("dish", dish);
+            startActivity(intent);
+        });
+
         setImage(imagePath, this.cardImageView);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 
     private void setImage(String imagePath, ImageView cardImageView) {

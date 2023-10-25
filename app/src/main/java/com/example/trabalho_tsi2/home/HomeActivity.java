@@ -30,6 +30,10 @@ public class HomeActivity extends AppCompatActivity {
         this.vegetarianDishImageButton= findViewById(R.id.vegetarianDishButton);
 
         this.loadMainDishes();
+        this.loadVegetarianDishes();
+
+        fragmentTransaction.commit();
+
         this.mainDishImageButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, DishActivity.class);
             Dish mainDish = database.getDailyMainDish();
@@ -47,25 +51,21 @@ public class HomeActivity extends AppCompatActivity {
 
     private void loadMainDishes() {
         Dish[] mainDishes = this.database.getMainDishes();
-        System.out.println(mainDishes[0]);
+
         for (int i = 0; i < 7; i++) {
             Dish dish = mainDishes[i];
-            DishCardFragment fragment = DishCardFragment.newInstance(this.getWeekday(i), dish.getTitle(), dish.getImagePath());
+            DishCardFragment fragment = DishCardFragment.newInstance(this.getWeekday(i), dish);
             fragmentTransaction.add(R.id.mainDishesContainer, fragment);
         }
-
-        fragmentTransaction.commit();
     }
 
     private void loadVegetarianDishes() {
-        Dish[] mainDishes = this.database.getMainDishes();
+        Dish[] vegetarianDishes = this.database.getVegetarianDishes();
         for (int i = 0; i < 7; i++) {
-            Dish dish = mainDishes[i];
-            DishCardFragment fragment = DishCardFragment.newInstance(this.getWeekday(i), dish.getTitle(), dish.getImagePath());
-            fragmentTransaction.add(R.id.mainDishesContainer, fragment);
+            Dish dish = vegetarianDishes[i];
+            DishCardFragment fragment = DishCardFragment.newInstance(this.getWeekday(i), dish);
+            fragmentTransaction.add(R.id.vegetarianDishesContainer, fragment);
         }
-
-        fragmentTransaction.commit();
     }
 
     private String getWeekday(int index) {
