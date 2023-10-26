@@ -15,45 +15,45 @@ public class Database {
     }
 
     public Dish getDailyMainDish() {
-        String[] baseDish = {"Peito de frango empanado", "Batata cozida", "Molho de tomate"};
+        String[] baseDish = {"Arroz branco", "Arroz integral", "Feijão com caldo"};
         Dish mainDish = new Dish(
-                "Frango empanado",
+                "Filé de frango acebolado",
                 baseDish,
-                "Frango empanado",
-                "Repolho com tomate",
+                "Farofa",
+                "Alface e cenoura",
                 "Laranja",
                 DishType.MAIN,
-                "https://static.itdg.com.br/images/1200-630/060ff779acb3a3ce1a171699ff8d4070/328929-original.jpg"
+                "https://oquetempracomer.com.br/wp-content/uploads/2022/02/Bife-de-frango-acebolado-capa.jpg"
         );
 
         return mainDish;
     }
 
     public Dish getDailyVegetarianDish() {
-        String[] baseDish = {"Cenoura", "Ervilha", "Queijo", "Batata palha"};
+        String[] baseDish = {"Arroz branco", "Arroz integral", "Feijão com caldo"};
         Dish vegetarianDish = new Dish(
-                "Panqueca de legumes",
+                "Lentilha com legumes",
                 baseDish,
-                "Panqueca de legumes",
-                "Repolho com tomate",
+                "Farofa",
+                "Alface e cenoura",
                 "Laranja",
                 DishType.VEGETARIAN,
-                "https://www.receitasnestle.com.br/sites/default/files/srh_recipes/e2f5a9b5191f3e1d4a5f9ea1ea7a749b.jpg"
+                "https://www.saboresajinomoto.com.br/uploads/images/recipes/lentilha-com-legumes.jpg"
         );
 
         return vegetarianDish;
     }
 
     public Dish[] getMainDishes() {
-        String[] baseDish = {"Peito de frango empanado", "Batata cozida", "Molho de tomate"};
+        String[] baseDish = {"Arroz branco", "Arroz integral", "Feijão com caldo"};
         Dish mainDish = new Dish(
-                "Frango empanado",
+                "Filé de frango acebolado",
                 baseDish,
-                "Frango empanado",
-                "Repolho com tomate",
+                "Farofa",
+                "Alface e cenoura",
                 "Laranja",
                 DishType.MAIN,
-                "https://static.itdg.com.br/images/1200-630/060ff779acb3a3ce1a171699ff8d4070/328929-original.jpg"
+                "https://oquetempracomer.com.br/wp-content/uploads/2022/02/Bife-de-frango-acebolado-capa.jpg"
         );
 
         Dish[] dishes ={ mainDish, mainDish, mainDish, mainDish, mainDish, mainDish, mainDish };
@@ -62,15 +62,15 @@ public class Database {
     }
 
     public Dish[] getVegetarianDishes() {
-        String[] baseDish = {"Cenoura", "Ervilha", "Queijo", "Batata palha"};
+        String[] baseDish = {"Arroz branco", "Arroz integral", "Feijão com caldo"};
         Dish vegetarianDish = new Dish(
-                "Panqueca de legumes",
+                "Lentilha com legumes",
                 baseDish,
-                "Panqueca de legumes",
-                "Repolho com tomate",
+                "Farofa",
+                "Alface e cenoura",
                 "Laranja",
                 DishType.VEGETARIAN,
-                "https://www.receitasnestle.com.br/sites/default/files/srh_recipes/e2f5a9b5191f3e1d4a5f9ea1ea7a749b.jpg"
+                "https://www.saboresajinomoto.com.br/uploads/images/recipes/lentilha-com-legumes.jpg"
         );
 
         Dish[] dishes ={ vegetarianDish, vegetarianDish, vegetarianDish, vegetarianDish, vegetarianDish, vegetarianDish, vegetarianDish };
