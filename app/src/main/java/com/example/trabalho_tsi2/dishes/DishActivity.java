@@ -84,13 +84,12 @@ public class DishActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent();
-        intent.putExtra("dish", dish);
         if (isBought) {
+            Intent intent = new Intent();
+            intent.putExtra("dish", dish);
             setResult(RESULT_OK, intent);
         } else {
-            setResult(RESULT_CANCELED, intent);
+            setResult(RESULT_CANCELED);
         }
         finish();
     }
