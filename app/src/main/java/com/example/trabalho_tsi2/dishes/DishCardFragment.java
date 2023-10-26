@@ -15,8 +15,6 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.trabalho_tsi2.R;
-import com.example.trabalho_tsi2.database.Database;
-import com.example.trabalho_tsi2.home.HomeActivity;
 
 public class DishCardFragment extends Fragment {
     private TextView cardTitleTextView;
@@ -25,8 +23,6 @@ public class DishCardFragment extends Fragment {
     private ImageView cardImageView;
     private LinearLayout container;
 
-
-    private Dish dish;
     public DishCardFragment() {
 
     }
@@ -69,7 +65,7 @@ public class DishCardFragment extends Fragment {
         this.container.setOnClickListener(containerView -> {
             Intent intent = new Intent(getActivity(), DishActivity.class);
             intent.putExtra("dish", dish);
-            startActivity(intent);
+            getActivity().startActivityForResult(intent, 1);
         });
 
         setImage(imagePath, this.cardImageView);

@@ -1,6 +1,8 @@
 package com.example.trabalho_tsi2.home;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -11,13 +13,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 
+import com.example.trabalho_tsi2.MainActivity;
 import com.example.trabalho_tsi2.R;
 import com.example.trabalho_tsi2.database.Database;
 import com.example.trabalho_tsi2.dishes.Dish;
 import com.example.trabalho_tsi2.dishes.DishActivity;
 import com.example.trabalho_tsi2.dishes.DishCardFragment;
+import com.example.trabalho_tsi2.purchases.Purchase;
 import com.example.trabalho_tsi2.purchases.PurchaseHistoryActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity {
     ImageButton mainDishImageButton;
@@ -27,10 +33,14 @@ public class HomeActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     Database database = Database.getInstance();
 
+    ArrayList<Purchase> purchases = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         this.mainDishImageButton = findViewById(R.id.mainDishButton);
         this.vegetarianDishImageButton = findViewById(R.id.vegetarianDishButton);
@@ -43,21 +53,21 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(HomeActivity.this, DishActivity.class);
             Dish mainDish = database.getDailyMainDish();
             intent.putExtra("dish", mainDish);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         });
 
         this.vegetarianDishImageButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, DishActivity.class);
             Dish mainDish = database.getDailyVegetarianDish();
             intent.putExtra("dish", mainDish);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.bottom_navigation_menu, menu);
+        inflater.inflate(R.menu.app_menu, menu);
 
         return true;
     }
@@ -66,15 +76,17 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 
-        if (itemId == R.id.homeMenuItem) {
-            Intent intent = new Intent(this, HomeActivity.class);
+        if (itemId == R.id.historyMenuItem) {
+            Intent intent = new Intent(this, PurchaseHistoryActivity.class);
+            intent.putExtra("purchases", purchases);
             startActivity(intent);
             return true;
         }
 
-        if (itemId == R.id.historyMenuItem) {
-            Intent intent = new Intent(this, PurchaseHistoryActivity.class);
+        if (itemId == R.id.exitMenuItem) {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
 
@@ -118,6 +130,19 @@ public class HomeActivity extends AppCompatActivity {
                 return "Domingo";
             default:
                 return "Not found";
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1 && resultCode == RESULT_OK) {
+            if (data != null) {
+                Dish dish = null;
+                dish = (Dish) data.getSerializableExtra("dish");
+                this.purchases.add(0, new Purchase(dish, new Date()));
+            }
         }
     }
 }

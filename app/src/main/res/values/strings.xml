@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">trabalho-tsi2</string>
+    <string name="app_name">RU UFMS</string>
     <string name="buy_ticket">Comprar ficha</string>
     <string name="dessert">Sobremesa</string>
     <string name="dish_image_description">Imagem do prato</string>
@@ -24,4 +24,8 @@
     <string name="to_continue">Continuar</string>
     <string name="home_icon_title">Início</string>
     <string name="history_icon_title">Histórico</string>
+    <string name="main_dishes">Pratos principais</string>
+    <string name="vegetarian_dishes">Pratos vegetarianos</string>
+    <string name="history">Histórico</string>
+    <string name="exit">Sair</string>
 </resources>
