@@ -65,7 +65,7 @@ public class DishCardFragment extends Fragment {
         this.container.setOnClickListener(containerView -> {
             Intent intent = new Intent(getActivity(), DishActivity.class);
             intent.putExtra("dish", dish);
-            getActivity().startActivityForResult(intent, 1);
+            requireActivity().startActivity(intent);
         });
 
         setImage(imagePath, this.cardImageView);

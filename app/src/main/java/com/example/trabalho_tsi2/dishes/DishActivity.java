@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.trabalho_tsi2.R;
+import com.example.trabalho_tsi2.database.Database;
 import com.google.android.material.snackbar.Snackbar;
 
 public class DishActivity extends AppCompatActivity {
@@ -28,11 +29,13 @@ public class DishActivity extends AppCompatActivity {
     private Dish dish;
     private boolean isBought = false;
 
+    private Database database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dish);
-
+        this.database = Database.getInstance();
         this.dishTypeText = findViewById(R.id.dishTypeText);
         this.dishImageView = findViewById(R.id.dishImageView);
         this.dishTypeTableText = findViewById(R.id.dishTypeTableText);
@@ -50,7 +53,7 @@ public class DishActivity extends AppCompatActivity {
         setImage();
 
         this.buyTicketButton.setOnClickListener(view -> {
-            this.isBought = true;
+            this.database.buyDish(dish);
             this.buyTicketButton.setText(R.string.ticket_bought);
             this.buyTicketButton.setEnabled(false);
             Snackbar.make(findViewById(R.id.dishConstraintLayout), "Ficha comprada com sucesso!", Snackbar.LENGTH_SHORT).show();
@@ -82,15 +85,4 @@ public class DishActivity extends AppCompatActivity {
         Glide.with(this).load(dish.getImagePath()).into(this.dishImageView);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (isBought) {
-            Intent intent = new Intent();
-            intent.putExtra("dish", dish);
-            setResult(RESULT_OK, intent);
-        } else {
-            setResult(RESULT_CANCELED);
-        }
-        finish();
-    }
 }

@@ -43,7 +43,7 @@ public class PurchasesAdapter extends ArrayAdapter<Purchase> {
         TextView purchaseDishText = itemView.findViewById(R.id.purchaseDishText);
         TextView purchaseDateText = itemView.findViewById(R.id.purchaseDateText);
 
-        Purchase purchase = purchases.get(position);
+        Purchase purchase = this.purchases.get(position);
         Dish dish = purchase.getDish();
         Date date = purchase.getDate();
 
