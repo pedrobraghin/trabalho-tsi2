@@ -24,6 +24,8 @@
     <string name="to_continue">Continuar</string>
     <string name="home_icon_title">Início</string>
     <string name="history_icon_title">Histórico</string>
+    <string name="wallet_icon_title">Carteira</string>
+    <string name="profile_icon_title">Perfil</string>
     <string name="main_dishes">Pratos principais</string>
     <string name="vegetarian_dishes">Pratos vegetarianos</string>
     <string name="history">Histórico</string>

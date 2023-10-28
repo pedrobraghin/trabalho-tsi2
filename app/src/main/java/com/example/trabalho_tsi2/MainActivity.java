@@ -9,8 +9,10 @@ import android.os.Bundle;
 
 import com.example.trabalho_tsi2.databinding.ActivityMainBinding;
 import com.example.trabalho_tsi2.home.HomeFragment;
+import com.example.trabalho_tsi2.profile.ProfileFragment;
 import com.example.trabalho_tsi2.purchases.Purchase;
 import com.example.trabalho_tsi2.purchases.PurchaseHistoryFragment;
+import com.example.trabalho_tsi2.wallet.WalletFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -35,6 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
             if (itemId == R.id.navigation_history) {
                 replaceFragment(new PurchaseHistoryFragment());
+                return true;
+            }
+
+            if (itemId == R.id.navigation_wallet) {
+                replaceFragment(new WalletFragment());
+                return true;
+            }
+
+            if (itemId == R.id.navigation_profile) {
+                replaceFragment(new ProfileFragment());
                 return true;
             }
 
