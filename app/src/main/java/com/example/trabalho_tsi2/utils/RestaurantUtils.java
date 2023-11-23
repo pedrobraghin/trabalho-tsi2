@@ -19,18 +19,39 @@ public class RestaurantUtils {
         DayOfWeek currentDayOfWeek = currentDateTimeMatoGrossoDoSul.getDayOfWeek();
 
         if (currentDayOfWeek == DayOfWeek.SUNDAY) return false;
-        return isNightAndRestaurantOpen(currentTime) && isMorningAndRestaurantOpen(currentTime);
+        return isNightAndRestaurantOpen(currentTime) || isMorningAndRestaurantOpen(currentTime);
     }
 
     public static boolean isMorningAndRestaurantOpen(LocalTime currentTime) {
-        LocalTime openTime = LocalTime.of(OPEN_TIME_MORNING - 1, 0);
-        LocalTime closeTime = LocalTime.of(CLOSE_TIME_MORNING - 1, 0);
+        LocalTime openTime = LocalTime.of(OPEN_TIME_MORNING -4, 0);
+        LocalTime closeTime = LocalTime.of(CLOSE_TIME_MORNING -4, 0);
         return currentTime.isAfter(openTime) && currentTime.isBefore(closeTime);
     }
 
     public static boolean isNightAndRestaurantOpen(LocalTime currentTime) {
-        LocalTime openTime = LocalTime.of(OPEN_TIME_NIGHT - 1, 0);
-        LocalTime closeTime = LocalTime.of(CLOSE_TIME_NIGHT - 1, 0);
+        LocalTime openTime = LocalTime.of(OPEN_TIME_NIGHT -4, 0);
+        LocalTime closeTime = LocalTime.of(CLOSE_TIME_NIGHT -4, 0);
         return currentTime.isAfter(openTime) && currentTime.isBefore(closeTime);
+    }
+
+    public static String getWeekday(int index) {
+        switch (index) {
+            case 0:
+                return "Segunda";
+            case 1:
+                return "Terça";
+            case 2:
+                return "Quarta";
+            case 3:
+                return "Quinta";
+            case 4:
+                return "Sexta";
+            case 5:
+                return "Sábado";
+            case 6:
+                return "Domingo";
+            default:
+                return "Not found";
+        }
     }
 }

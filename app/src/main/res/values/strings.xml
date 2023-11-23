@@ -30,4 +30,8 @@
     <string name="vegetarian_dishes">Pratos vegetarianos</string>
     <string name="history">Histórico</string>
     <string name="exit">Sair</string>
+    <string name="share">Compartilhar</string>
+    <string name="usage">Fichas utilizadas</string>
+    <string name="home_meat_scroll_label">Opções com carne para a semana</string>
+    <string name="home_vegetarian_scroll_label">Opções vegenarianas para a semana</string>
 </resources>

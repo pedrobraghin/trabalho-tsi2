@@ -35,6 +35,9 @@ public class HomeFragment extends Fragment {
     Database database;
     ArrayList<Purchase> purchases;
 
+    public HomeFragment() {
+
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +81,7 @@ public class HomeFragment extends Fragment {
 
         for (int i = 0; i < 7; i++) {
             Dish dish = mainDishes[i];
-            DishCardFragment fragment = DishCardFragment.newInstance(this.getWeekday(i), dish);
+            DishCardFragment fragment = DishCardFragment.newInstance(RestaurantUtils.getWeekday(i), dish);
             fragmentTransaction.add(R.id.mainDishesContainer, fragment);
         }
         fragmentTransaction.commit();
@@ -91,31 +94,10 @@ public class HomeFragment extends Fragment {
         Dish[] vegetarianDishes = this.database.getVegetarianDishes();
         for (int i = 0; i < 7; i++) {
             Dish dish = vegetarianDishes[i];
-            DishCardFragment fragment = DishCardFragment.newInstance(this.getWeekday(i), dish);
+            DishCardFragment fragment = DishCardFragment.newInstance(RestaurantUtils.getWeekday(i), dish);
             fragmentTransaction.add(R.id.vegetarianDishesContainer, fragment);
         }
         fragmentTransaction.commit();
-    }
-
-    private String getWeekday(int index) {
-        switch (index) {
-            case 0:
-                return "Segunda";
-            case 1:
-                return "Terça";
-            case 2:
-                return "Quarta";
-            case 3:
-                return "Quinta";
-            case 4:
-                return "Sexta";
-            case 5:
-                return "Sábado";
-            case 6:
-                return "Domingo";
-            default:
-                return "Not found";
-        }
     }
 
     private void updateRestaurantStatus(TextView statusTextView) {

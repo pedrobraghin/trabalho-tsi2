@@ -1,9 +1,14 @@
 package com.example.trabalho_tsi2.dishes;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,11 +16,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.trabalho_tsi2.R;
 import com.example.trabalho_tsi2.database.Database;
-import com.google.android.material.snackbar.Snackbar;
 
 public class DishActivity extends AppCompatActivity {
 
-    private TextView dishTypeText;
     private ImageView dishImageView;
     private TextView dishTypeTableText;
     private TextView dishTitleText;
@@ -24,19 +27,16 @@ public class DishActivity extends AppCompatActivity {
     private TextView saladText;
     private TextView dessertText;
 
-    private Button buyTicketButton;
-
     private Dish dish;
-    private boolean isBought = false;
 
-    private Database database;
-
+    private BuyDishBottomSheetFragment buyDishBottomSheetFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_dish);
-        this.database = Database.getInstance();
-        this.dishTypeText = findViewById(R.id.dishTypeText);
+
+        Database database = Database.getInstance();
         this.dishImageView = findViewById(R.id.dishImageView);
         this.dishTypeTableText = findViewById(R.id.dishTypeTableText);
         this.dishTitleText = findViewById(R.id.dishTitleText);
@@ -44,7 +44,7 @@ public class DishActivity extends AppCompatActivity {
         this.garnishText = findViewById(R.id.garnishText);
         this.saladText = findViewById(R.id.saladText);
         this.dessertText = findViewById(R.id.dessertText);
-        this.buyTicketButton = findViewById(R.id.buyTicketButton);
+        Button buyTicketButton = findViewById(R.id.buyTicketButton);
 
         Intent intent = getIntent();
         this.dish = (Dish) intent.getSerializableExtra("dish");
@@ -52,12 +52,57 @@ public class DishActivity extends AppCompatActivity {
         setTexts();
         setImage();
 
-        this.buyTicketButton.setOnClickListener(view -> {
-            this.database.buyDish(dish);
-            this.buyTicketButton.setText(R.string.ticket_bought);
-            this.buyTicketButton.setEnabled(false);
-            Snackbar.make(findViewById(R.id.dishConstraintLayout), "Ficha comprada com sucesso!", Snackbar.LENGTH_SHORT).show();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null ){
+            actionBar.setTitle(this.dish.getTitle());
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        this.buyDishBottomSheetFragment = new BuyDishBottomSheetFragment(dish);
+
+        buyTicketButton.setOnClickListener(view -> {
+            showBottomSheet();
         });
+    }
+
+    private void shareDish() {
+        String dishDescription = dish.getTitle() + " " + dish.getType();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, dishDescription);
+        startActivity(Intent.createChooser(intent, "Compartilhar via: "));
+    }
+
+    private void showBottomSheet() {
+        this.buyDishBottomSheetFragment.show(getSupportFragmentManager(), buyDishBottomSheetFragment.getTag());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.view_dish_options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.share_dish) {
+            shareDish();
+            return true;
+        }
+
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void setTexts() {
@@ -72,7 +117,6 @@ public class DishActivity extends AppCompatActivity {
                 break;
         }
 
-        this.dishTypeText.setText(dishTypeString);
         this.dishTypeTableText.setText(dishTypeString);
         this.dishTitleText.setText(dish.getTitle());
         this.baseDishText.setText(String.join("\n", dish.getBaseDish()));

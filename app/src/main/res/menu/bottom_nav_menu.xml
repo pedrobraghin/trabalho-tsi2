@@ -5,13 +5,13 @@
         android:title="@string/home_icon_title"
         android:icon="@drawable/ic_home" />
     <item
-        android:id="@+id/navigation_history"
-        android:title="@string/history_icon_title"
-        android:icon="@drawable/ic_history" />
-    <item
         android:id="@+id/navigation_wallet"
         android:title="@string/wallet_icon_title"
         android:icon="@drawable/ic_baseline_credit_card_24" />
+    <item
+        android:id="@+id/navigation_history"
+        android:title="@string/history_icon_title"
+        android:icon="@drawable/ic_history" />
     <item
         android:id="@+id/navigation_profile"
         android:title="@string/profile_icon_title"

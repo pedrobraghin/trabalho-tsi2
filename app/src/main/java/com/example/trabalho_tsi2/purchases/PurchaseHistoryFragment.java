@@ -23,6 +23,8 @@ public class PurchaseHistoryFragment extends Fragment {
     private ListView purchasesListView;
 
 
+    public PurchaseHistoryFragment() { }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

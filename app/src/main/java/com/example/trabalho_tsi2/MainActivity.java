@@ -10,12 +10,8 @@ import android.os.Bundle;
 import com.example.trabalho_tsi2.databinding.ActivityMainBinding;
 import com.example.trabalho_tsi2.home.HomeFragment;
 import com.example.trabalho_tsi2.profile.ProfileFragment;
-import com.example.trabalho_tsi2.purchases.Purchase;
-import com.example.trabalho_tsi2.purchases.PurchaseHistoryFragment;
+import com.example.trabalho_tsi2.purchases.ChipsHistoryFragment;
 import com.example.trabalho_tsi2.wallet.WalletFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -36,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (itemId == R.id.navigation_history) {
-                replaceFragment(new PurchaseHistoryFragment());
+                replaceFragment(new ChipsHistoryFragment());
                 return true;
             }
 
