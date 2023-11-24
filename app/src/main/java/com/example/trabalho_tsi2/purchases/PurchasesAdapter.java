@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.example.trabalho_tsi2.R;
+import com.example.trabalho_tsi2.database.Database;
 import com.example.trabalho_tsi2.dishes.Dish;
 
 import java.text.DateFormat;
@@ -64,8 +65,7 @@ public class PurchasesAdapter extends ArrayAdapter<Purchase> {
                        .setMessage("" + purchase.getId())
                        .setPositiveButton("Utilizar", (dialog, which) -> {
                            purchase.useChip();
-                           this.purchases.remove(position);
-                           notifyDataSetChanged();
+                           Database.getInstance().updatePurchase(position, purchase);
                            dialog.dismiss();
                        })
                        .setNegativeButton("Cancelar", (dialog, which) -> {

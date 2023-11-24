@@ -3,17 +3,19 @@ package com.example.trabalho_tsi2.database;
 import com.example.trabalho_tsi2.dishes.Dish;
 import com.example.trabalho_tsi2.dishes.DishType;
 import com.example.trabalho_tsi2.purchases.Purchase;
+import com.example.trabalho_tsi2.purchases.PurchaseObserver;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Database {
     private static Database instance;
     private ArrayList<Purchase> purchases;
-
     private Database() {
         this.purchases = new ArrayList<>();
     }
+    private List<PurchaseObserver> observers = new ArrayList<>();
 
     public static Database getInstance() {
         if(Database.instance == null) {
@@ -24,6 +26,11 @@ public class Database {
 
     public ArrayList<Purchase> getPurchaseHistory() {
         return this.purchases;
+    }
+
+    public void updatePurchase(int index, Purchase purchase) {
+        this.purchases.set(index, purchase);
+        this.notifyDataChanged();
     }
 
     public void buyDish(Dish dish) {
@@ -92,5 +99,19 @@ public class Database {
         Dish[] dishes ={ vegetarianDish, vegetarianDish, vegetarianDish, vegetarianDish, vegetarianDish, vegetarianDish, vegetarianDish };
 
         return dishes;
+    }
+
+    public void addObserver(PurchaseObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(PurchaseObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyDataChanged() {
+        for (PurchaseObserver observer : observers) {
+            observer.onDataChanged();
+        }
     }
 }
