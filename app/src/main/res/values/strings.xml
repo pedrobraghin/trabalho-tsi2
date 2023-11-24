@@ -43,4 +43,9 @@
     <string name="rga">RGA</string>
     <string name="to_signup">Cadastrar</string>
     <string name="signout">Sair</string>
+    <string name="balance">Saldo</string>
+    <string name="recharge">Recarregar</string>
+    <string name="real_symbol">"R$ "</string>
+    <string name="recharge_wallet">Recarregar Carteira</string>
+    <string name="value">Valor</string>
 </resources>
