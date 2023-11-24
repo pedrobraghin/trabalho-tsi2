@@ -15,7 +15,7 @@ import com.example.trabalho_tsi2.database.Database;
 
 import java.util.ArrayList;
 
-public class PurchaseHistoryFragment extends Fragment {
+public class PurchaseHistoryFragment extends Fragment implements PurchaseObserver{
 
     private ArrayList<Purchase> purchases;
     private Database database;
@@ -36,13 +36,33 @@ public class PurchaseHistoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_purchase_history, container, false);
 
         this.database = Database.getInstance();
+        this.database.addObserver(this);
         this.purchases = database.getPurchaseHistory();
 
-        this.purchasesAdapter = new PurchasesAdapter(getActivity(), purchases);
+        ArrayList<Purchase> availablePurchases = new ArrayList<>();
+
+        for(Purchase purchase: this.purchases) {
+            if(!purchase.getChipAvailable()) {
+              continue;
+            }
+            availablePurchases.add(purchase);
+        }
+
+        this.purchasesAdapter = new PurchasesAdapter(getActivity(), availablePurchases);
 
         this.purchasesListView = view.findViewById(R.id.purchasesListView);
         this.purchasesListView.setAdapter(purchasesAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.database.removeObserver(this);
+    }
+    @Override
+    public void onDataChanged() {
+        this.purchasesAdapter.notifyDataSetChanged();
     }
 }
