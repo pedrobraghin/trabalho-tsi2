@@ -1,6 +1,7 @@
 package com.example.trabalho_tsi2.purchases;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,25 @@ public class PurchasesAdapter extends ArrayAdapter<Purchase> {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
         dateFormat.setTimeZone(TimeZone.getDefault());
         purchaseDateText.setText(dateFormat.format(date));
+
+        if (purchase.getChipAvailable()) {
+           itemView.setOnClickListener(v -> {
+               AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+               builder.setTitle("Apresente a ficha no caixa")
+                       .setMessage("" + purchase.getId())
+                       .setPositiveButton("Utilizar", (dialog, which) -> {
+                           purchase.useChip();
+                           this.purchases.remove(position);
+                           notifyDataSetChanged();
+                           dialog.dismiss();
+                       })
+                       .setNegativeButton("Cancelar", (dialog, which) -> {
+                            dialog.dismiss();
+                       });
+               AlertDialog dialog = builder.create();
+               dialog.show();
+           });
+        }
 
         return itemView;
     }
