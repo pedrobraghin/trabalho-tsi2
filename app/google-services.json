@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "611551159911",
+    "project_id": "trabalho-tsi2",
+    "storage_bucket": "trabalho-tsi2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611551159911:android:5d839d2b06044e608696c2",
+        "android_client_info": {
+          "package_name": "com.example.trabalho_tsi2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnIHd7vdr_i_K4Cw3Ermk56rrEFBNMVzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

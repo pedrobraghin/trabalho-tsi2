@@ -34,4 +34,13 @@
     <string name="usage">Fichas utilizadas</string>
     <string name="home_meat_scroll_label">Opções com carne para a semana</string>
     <string name="home_vegetarian_scroll_label">Opções vegenarianas para a semana</string>
+    <string name="signin">Entrar</string>
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="no_account_label">Não possui uma conta?</string>
+    <string name="signup">Cadastre-se</string>
+    <string name="fullname">Nome completo</string>
+    <string name="rga">RGA</string>
+    <string name="to_signup">Cadastrar</string>
+    <string name="signout">Sair</string>
 </resources>
