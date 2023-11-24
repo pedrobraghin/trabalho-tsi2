@@ -18,7 +18,7 @@ public class ChipsHistoryFragment extends Fragment {
     ChipsHistoryPagerAdapter chipsHistoryPagerAdapter;
     ViewPager2 viewPager;
 
-    private final String[] tabTitles = {"Fichas compradas", "Fichas utilizadas"};
+    private final String[] tabTitles = {"Fichas não utilizadas", "Fichas utilizadas"};
 
     @Nullable
     @Override
