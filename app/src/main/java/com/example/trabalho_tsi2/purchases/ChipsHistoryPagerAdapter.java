@@ -16,7 +16,7 @@ public class ChipsHistoryPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         Fragment fragment;
-        System.out.println(position);
+
         if (position == 0) {
             fragment = new PurchaseHistoryFragment();
         } else {
