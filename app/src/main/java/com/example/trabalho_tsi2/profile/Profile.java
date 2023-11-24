@@ -3,14 +3,14 @@ package com.example.trabalho_tsi2.profile;
 public class Profile {
     private String fullName;
     private String rga;
-    private Double saldo;
+    private Double balance;
 
     public Profile() {}
 
-    public Profile(String fullName, String rga, Double saldo) {
+    public Profile(String fullName, String rga, Double balance) {
         this.fullName = fullName;
         this.rga = rga;
-        this.saldo = saldo;
+        this.balance = balance;
     }
 
     public String getFullName() {
@@ -29,11 +29,11 @@ public class Profile {
         this.rga = rga;
     }
 
-    public Double getSaldo() {
-        return saldo;
+    public Double getBalance() {
+        return balance;
     }
 
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }
